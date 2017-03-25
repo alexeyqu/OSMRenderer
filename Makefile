@@ -1,2 +1,4 @@
+LIBS = -lglfw3 -pthread -lglfw3 -lGLEW -lGLU -lGL -lXrandr -lXxf86vm -lXi -lXinerama -lX11 -lrt -ldl -lXcursor
+
 hello:
-	g++ HelloGL.cpp -lglfw3 -o HelloGL -pthread -lglfw3 -lGLEW -lGLU -lGL -lXrandr -lXxf86vm -lXi -lXinerama -lX11 -lrt -ldl -lXcursor
+	g++ HelloGL.cpp Shader.cpp  $(LIBS) -o HelloGL
