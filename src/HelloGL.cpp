@@ -47,7 +47,7 @@ int main()
 	glfwGetFramebufferSize(window, &width, &height);	  
 	glViewport(0, 0, width, height);
 
-	Shader myShader("shader.vs", "shader.frag");
+	Shader myShader("src/shader.vs", "src/shader.frag");
 
 	GLfloat vertices[] = {
          0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   2.0f, 2.0f, 
@@ -95,7 +95,13 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	unsigned char* image = SOIL_load_image("container.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+	unsigned char* image = SOIL_load_image("img/container.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+	if(image == NULL)
+	{
+		std::cout << "SOIL loading error: " << SOIL_last_result() << std::endl;
+		return -1;
+	}
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -112,7 +118,13 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	unsigned char* imageFace = SOIL_load_image("awesomeface.png", &width, &height, 0, SOIL_LOAD_RGB);
+	unsigned char* imageFace = SOIL_load_image("img/awesomeface.png", &width, &height, 0, SOIL_LOAD_RGB);
+	if(imageFace == NULL)
+	{
+		std::cout << "SOIL loading error: " << SOIL_last_result() << std::endl;
+		return -1;
+	}
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, imageFace);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
